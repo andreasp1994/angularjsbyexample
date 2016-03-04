@@ -1,0 +1,32 @@
+{
+  "name": "trainer",
+  "version": "1.0.0",
+  "description": "Personal Trainer App",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "dependencies": {},
+  "devDependencies": {},
+  "scripts": {
+    "postinstall": "bower install",
+    "prestart": "npm install",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "typings": "typings",
+    "tsc": "tsc -p . -w"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chandermani/angularjsbyexample.git"
+  },
+  "keywords": [
+    "Workout",
+    "Exercise"
+  ],
+  "author": "Chandermani",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/chandermani/angularjsbyexample/issues"
+  },
+  "homepage": "https://github.com/chandermani/angularjsbyexample#readme"
+}

@@ -1,0 +1,5 @@
+{
+  "ambientDependencies": {
+    "angular": "github:DefinitelyTyped/DefinitelyTyped/angularjs/legacy/angular-1.2.d.ts#17d8aadb533b1c3ae462f8bcfcfa758bb38e55c1"
+  }
+}
