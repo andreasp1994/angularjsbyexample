@@ -1,9 +1,10 @@
+// Compiled using typings@0.6.9
+// Source: https://raw.githubusercontent.com/DefinitelyTyped/DefinitelyTyped/621f12c6602bcc569bc6ad3a67a0af3ba3832618/angularjs/angular-resource.d.ts
 // Type definitions for Angular JS 1.3 (ngResource module)
 // Project: http://angularjs.org
 // Definitions by: Diego Vilar <http://github.com/diegovilar>, Michael Jess <http://github.com/miffels>
 // Definitions: https://github.com/daptiv/DefinitelyTyped
 
-/// <reference path="angular.d.ts" />
 
 declare module 'angular-resource' {
     var _: string;

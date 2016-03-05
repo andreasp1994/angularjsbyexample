@@ -1,9 +1,10 @@
+// Compiled using typings@0.6.9
+// Source: https://raw.githubusercontent.com/DefinitelyTyped/DefinitelyTyped/3c26c6546fab58b39d04d6ae40bacfa9a25dd196/angularjs/angular-animate.d.ts
 // Type definitions for Angular JS 1.3 (ngAnimate module)
 // Project: http://angularjs.org
 // Definitions by: Michel Salib <https://github.com/michelsalib>, Adi Dahiya <https://github.com/adidahiya>, Raphael Schweizer <https://github.com/rasch>, Cody Schaaf <https://github.com/codyschaaf>
 // Definitions: https://github.com/borisyankov/DefinitelyTyped
 
-/// <reference path="angular.d.ts" />
 
 declare module "angular-animate" {
     var _: string;

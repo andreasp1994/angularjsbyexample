@@ -1,9 +1,10 @@
+// Compiled using typings@0.6.9
+// Source: https://raw.githubusercontent.com/DefinitelyTyped/DefinitelyTyped/80c19345b84626c404ecc1bdc68c7ee6297b4f7f/angularjs/angular-route.d.ts
 // Type definitions for Angular JS 1.3 (ngRoute module)
 // Project: http://angularjs.org
 // Definitions by: Jonathan Park <https://github.com/park9140>
 // Definitions: https://github.com/borisyankov/DefinitelyTyped
 
-/// <reference path="angular.d.ts" />
 
 declare module "angular-route" {
     var _: string;
