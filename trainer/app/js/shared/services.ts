@@ -1,4 +1,5 @@
-/* Services */
+import {WorkoutPlan, Exercise} from './model';
+
 export var appEvents = {
   workout: { exerciseStarted: "event:workout:exerciseStarted" }
 };
@@ -13,7 +14,7 @@ export function workoutService() {
     collectionsUrl = apiUrl + dbName + "/collections";
   }
 
-  var $get = (WorkoutPlan, Exercise, $http, $q, $resource) => {
+  var $get = ($http, $q, $resource) => {
     var service: any = {};
     var workouts = [];
     var exercises = [];
@@ -74,7 +75,7 @@ export function workoutService() {
 
     return service;
   }
-  $get.$inject = ['WorkoutPlan', 'Exercise', '$http', '$q', '$resource'];
+  $get.$inject = ['$http', '$q', '$resource'];
   return {
     '$get': $get,
     'configure': configure
@@ -84,14 +85,14 @@ export function workoutService() {
 export function apiKeyAppenderInterceptor() {
   var apiKey = null;
   var setApiKey = function(key) {
-    this.apiKey = key;
+    apiKey = key;
   }
   var $get = ($q) => {
     return {
       'request': function(config) {
-        if (this.apiKey && config && config.url.toLowerCase().indexOf("https://api.mongolab.com") >= 0) {
+        if (apiKey && config && config.url.toLowerCase().indexOf("https://api.mongolab.com") >= 0) {
           config.params = config.params || {};
-          config.params.apiKey = this.apiKey;
+          config.params.apiKey = apiKey;
         }
         return config || $q.when(config);
       }

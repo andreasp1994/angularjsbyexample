@@ -1,8 +1,5 @@
-'use strict';
-
-/* Controllers */
-
-export function WorkoutController($scope, $interval, $location, workoutHistoryTracker, appEvents, WorkoutService, $routeParams, Exercise) {
+import {Exercise} from '../shared/model';
+export function WorkoutController($scope, $interval, $location, workoutHistoryTracker, appEvents, WorkoutService, $routeParams) {
   var restExercise;
   var exerciseIntervalPromise;
   var startWorkout = function() {
@@ -133,7 +130,7 @@ export function WorkoutController($scope, $interval, $location, workoutHistoryTr
 
   init();
 }
-WorkoutController.$inject = ['$scope', '$interval', '$location', 'workoutHistoryTracker', 'appEvents', 'WorkoutService', '$routeParams', 'Exercise'];
+WorkoutController.$inject = ['$scope', '$interval', '$location', 'workoutHistoryTracker', 'appEvents', 'WorkoutService', '$routeParams'];
 
 export function WorkoutAudioController($scope, $interval, $location, $timeout) {
   $scope.exercisesAudio = [];

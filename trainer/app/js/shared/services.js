@@ -1,6 +1,7 @@
-System.register([], function(exports_1, context_1) {
+System.register(['./model'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
+    var model_1;
     var appEvents;
     function workoutService() {
         var apiUrl = "https://api.mongolab.com/api/1/databases/";
@@ -10,7 +11,7 @@ System.register([], function(exports_1, context_1) {
         var configure = function (dbName) {
             collectionsUrl = apiUrl + dbName + "/collections";
         };
-        var $get = function (WorkoutPlan, Exercise, $http, $q, $resource) {
+        var $get = function ($http, $q, $resource) {
             var service = {};
             var workouts = [];
             var exercises = [];
@@ -19,7 +20,7 @@ System.register([], function(exports_1, context_1) {
                 return $http.get(collectionsUrl + "/workouts")
                     .then(function (response) {
                     return response.data.map(function (workout) {
-                        return new WorkoutPlan(workout);
+                        return new model_1.WorkoutPlan(workout);
                     });
                 });
             };
@@ -27,7 +28,7 @@ System.register([], function(exports_1, context_1) {
                 return $q.all([service.Exercises.query().$promise, $http.get(collectionsUrl + "/workouts/" + name)])
                     .then(function (response) {
                     var allExercises = response[0];
-                    var workout = new WorkoutPlan(response[1].data);
+                    var workout = new model_1.WorkoutPlan(response[1].data);
                     angular.forEach(response[1].data.exercises, function (exercise) {
                         exercise.details = allExercises.filter(function (e) { return e.name === exercise.name; })[0];
                     });
@@ -63,7 +64,7 @@ System.register([], function(exports_1, context_1) {
             };
             return service;
         };
-        $get.$inject = ['WorkoutPlan', 'Exercise', '$http', '$q', '$resource'];
+        $get.$inject = ['$http', '$q', '$resource'];
         return {
             '$get': $get,
             'configure': configure
@@ -73,14 +74,14 @@ System.register([], function(exports_1, context_1) {
     function apiKeyAppenderInterceptor() {
         var apiKey = null;
         var setApiKey = function (key) {
-            this.apiKey = key;
+            apiKey = key;
         };
         var $get = function ($q) {
             return {
                 'request': function (config) {
-                    if (this.apiKey && config && config.url.toLowerCase().indexOf("https://api.mongolab.com") >= 0) {
+                    if (apiKey && config && config.url.toLowerCase().indexOf("https://api.mongolab.com") >= 0) {
                         config.params = config.params || {};
-                        config.params.apiKey = this.apiKey;
+                        config.params.apiKey = apiKey;
                     }
                     return config || $q.when(config);
                 }
@@ -94,9 +95,11 @@ System.register([], function(exports_1, context_1) {
     }
     exports_1("apiKeyAppenderInterceptor", apiKeyAppenderInterceptor);
     return {
-        setters:[],
+        setters:[
+            function (model_1_1) {
+                model_1 = model_1_1;
+            }],
         execute: function() {
-            /* Services */
             exports_1("appEvents", appEvents = {
                 workout: { exerciseStarted: "event:workout:exerciseStarted" }
             });

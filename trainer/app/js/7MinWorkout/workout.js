@@ -1,8 +1,8 @@
-System.register([], function(exports_1, context_1) {
-    'use strict';
+System.register(['../shared/model'], function(exports_1, context_1) {
+    "use strict";
     var __moduleName = context_1 && context_1.id;
-    /* Controllers */
-    function WorkoutController($scope, $interval, $location, workoutHistoryTracker, appEvents, WorkoutService, $routeParams, Exercise) {
+    var model_1;
+    function WorkoutController($scope, $interval, $location, workoutHistoryTracker, appEvents, WorkoutService, $routeParams) {
         var restExercise;
         var exerciseIntervalPromise;
         var startWorkout = function () {
@@ -12,7 +12,7 @@ System.register([], function(exports_1, context_1) {
                 $scope.workoutPlan = workout;
                 $scope.workoutTimeRemaining = $scope.workoutPlan.totalWorkoutDuration();
                 restExercise = {
-                    details: new Exercise({
+                    details: new model_1.Exercise({
                         name: "rest",
                         title: "Relax!",
                         description: "Relax a bit!",
@@ -176,9 +176,12 @@ System.register([], function(exports_1, context_1) {
     }
     exports_1("WorkoutAudioController", WorkoutAudioController);
     return {
-        setters:[],
+        setters:[
+            function (model_1_1) {
+                model_1 = model_1_1;
+            }],
         execute: function() {
-            WorkoutController.$inject = ['$scope', '$interval', '$location', 'workoutHistoryTracker', 'appEvents', 'WorkoutService', '$routeParams', 'Exercise'];
+            WorkoutController.$inject = ['$scope', '$interval', '$location', 'workoutHistoryTracker', 'appEvents', 'WorkoutService', '$routeParams'];
             WorkoutAudioController.$inject = ['$scope', '$interval', '$location', '$timeout'];
         }
     }
