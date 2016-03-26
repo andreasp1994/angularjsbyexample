@@ -16,6 +16,15 @@ import './WorkoutBuilder/workout.js';
 
 import {upgradeAdapter} from './upgrade-adapter.js';
 
+upgradeAdapter.upgradeNg1Provider('ExercisePlan');
+upgradeAdapter.upgradeNg1Provider('WorkoutPlan');
+upgradeAdapter.upgradeNg1Provider('WorkoutService');
+upgradeAdapter.upgradeNg1Provider('WorkoutBuilderService');
+upgradeAdapter.upgradeNg1Provider('ExerciseBuilderService');
+upgradeAdapter.upgradeNg1Provider('ApiKeyAppenderInterceptor');
+upgradeAdapter.upgradeNg1Provider('appEvents');
+upgradeAdapter.upgradeNg1Provider('workoutHistoryTracker');
+
 angular.element(document).ready(function() {
     upgradeAdapter.bootstrap(document.body, ['app'], { strictDi: true });
 });
