@@ -61,16 +61,10 @@
     <!--Script required for E2E testing. Comment it in production use-->
     <!--<script src="js/appe2e.js"></script>-->
 
-    <script src="node_modules/babel-core/browser.min.js"></script>
-    <script src="node_modules/es6-module-loader/dist/es6-module-loader-dev.src.js"></script>
     <script src="node_modules/systemjs/dist/system.src.js"></script>
     <script>
        System.config({
        packages: {'js': {defaultExtension: 'js'}},
-       transpiler: "babel",
-       babelOptions: {
-           "stage": 1
-       }
      });
      System.import('js/app.js');
    </script>
