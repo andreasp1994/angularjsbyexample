@@ -66,11 +66,15 @@
     <script src="node_modules/angular2/bundles/angular2-polyfills.js"></script>
     <script src="node_modules/rxjs/bundles/Rx.min.js"></script>
     <script src="node_modules/angular2/bundles/angular2.dev.js"></script>
+    <script src="node_modules/angular2/bundles/http.dev.js"></script>
     <script src="node_modules/angular2/bundles/upgrade.dev.js"></script>
+    <script src="node_modules/ng2-translate/bundles/ng2-translate.js"></script>
 
     <script>
        System.config({
-       packages: {'js': {defaultExtension: 'js'}},
+       packages: {
+         'js': {defaultExtension: 'js'}
+       },
      });
      System.import('js/app.js');
    </script>
