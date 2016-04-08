@@ -8,7 +8,10 @@ export class SearchPipe {
     const field: string = args[0];
     const searchTerm: any = args[1];
     if (!field) return [];
-    if (!searchTerm || 0 === searchTerm.length) return value;
+    if ((!searchTerm && searchTerm !== false) || 0 === searchTerm.length) return value;
+    if (typeof (searchTerm) === "boolean") {
+      return value.filter((item) => item[field] == searchTerm);
+    }
     return value.filter((item) => item[field].startsWith(searchTerm));
   }
 }
@@ -19,7 +22,7 @@ export class SearchPipe {
 export class OrderByPipe {
   transform(value: Array<any>, args: any[]): any {
     let field: string = args[0];
-    if(value==null) {
+    if (value == null) {
       return null;
     }
     if (field.startsWith("-")) {

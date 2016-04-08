@@ -4,6 +4,10 @@ import {UpgradeAdapterRef} from 'angular2/upgrade';
 import {HTTP_PROVIDERS, Http} from 'angular2/http';
 import {TranslateService, TranslateLoader, TranslateStaticLoader} from 'ng2-translate';
 
+import {ELEMENT_PROBE_PROVIDERS} from 'angular2/platform/common_dom';
+import {ModalConfig, Modal} from 'angular2-modal';
+import {rootElement} from './shared/root-element';
+
 import './app.module.js';
 import './config.js';
 import './root.js';
@@ -14,7 +18,6 @@ import './7MinWorkout/services.js';
 import './7MinWorkout/directives.js';
 import './7MinWorkout/filters.js';
 import './7MinWorkout/workout.js';
-import './7MinWorkout/workoutvideos.js';
 import './WorkoutBuilder/services.js';
 import './WorkoutBuilder/directives.js';
 import './WorkoutBuilder/exercise.js';
@@ -25,6 +28,12 @@ import {upgradeAdapter} from './upgrade-adapter';
 
 import './start/start-component';
 import './finish/finish-component';
+import './ng1-root-component';
+import './ng2-root-component';
+import './root/workout-history-component';
+import './root/top-nav-component';
+import './7MinWorkout/video-panel-component';
+
 
 import './shared/filters'
 
@@ -45,11 +54,20 @@ upgradeAdapter.addProvider(provide(TranslateLoader, {
 upgradeAdapter.addProvider(TranslateService);
 upgradeAdapter.addProvider(HTTP_PROVIDERS);
 
+upgradeAdapter.addProvider(ELEMENT_PROBE_PROVIDERS);
+upgradeAdapter.addProvider(provide(ModalConfig, { useValue: new ModalConfig('lg', true, 81) }));
+
+
+//upgradeAdapter.addProvider(provide('config', { useValue: new ModalConfig('lg', true, 81) }));
+
+
 angular.module('app').factory('ng2TranslateService', upgradeAdapter.downgradeNg2Provider(TranslateService));
+
 
 angular.element(document).ready(function() {
   upgradeAdapter.bootstrap(document.body, ['app'], { strictDi: true })
     .ready((updateApp: UpgradeAdapterRef) => {
+    console.log('ready');
     var translateService = updateApp.ng2Injector.get(TranslateService);
     var userLang = navigator.language.split('-')[0]; // use navigator lang if available
     userLang = /(fr|en)/gi.test(userLang) ? userLang : 'en';
